@@ -1,8 +1,8 @@
-import { INITACTION }from './actionTypes.js';
+import { ADD_MV }from './actionTypes.js';
 
-export function initFunc (whatEver){
+export function addMV (newMV){
     return {
-        type: INITACTION,
-        payload: whatEver
+        type: ADD_MV,
+        payload: newMV
     }
 }

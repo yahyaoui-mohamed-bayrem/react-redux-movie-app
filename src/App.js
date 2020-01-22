@@ -1,11 +1,13 @@
 import React from 'react';
 import './App.css';
+import SearchBarr from './components/SeachBarr.js';
+import MovieRender from './components/MovieRender.js';
 
 function App() {
   return (
     <div className="App">
-      <p>test 1</p>
-      <p>test 2</p>
+      <SearchBarr />
+      <MovieRender />
     </div>
   );
 }

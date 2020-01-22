@@ -1,11 +1,10 @@
-import { INITACTION } from '../actions/actionTypes.js';
-
-let initState = [];
+import { ADD_MV } from '../actions/actionTypes.js';
+import { initState } from '../../components/initFile.js';
 
 const myReducer = (state = initState, action) => {
     switch (action.type){
-        case INITACTION :
-            return state;
+        case ADD_MV :
+            return [...state, action.payload];
         default : return state;
     }
 }

@@ -1,0 +1,24 @@
+.movie-render{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    justify-content: center;
+    width: 80%;
+}
+.movie-card{
+    display: flex;
+    flex-direction: column;
+    width: 160px;
+    align-items: center;
+    margin: 20px;
+    border: 2px solid goldenrod;
+    border-radius: 10px;
+    box-shadow: 5px 6px 35px -9px rgba(0,0,0,0.75);
+    overflow: hidden;
+}
+.add{
+    background-image: url(https://us.123rf.com/450wm/vectoroksana/vectoroksana1911/vectoroksana191100244/133047058-gold-line-bookmark-icon-isolated-on-dark-blue-background-add-to-concept-vector-illustration.jpg?ver=6);
+    background-size: 50%;
+    height: 150px;
+    align-self: flex-end;
+}

@@ -1,1 +1,1 @@
-export const INITACTION='INITACTION';
+export const ADD_MV='ADD_MV';
