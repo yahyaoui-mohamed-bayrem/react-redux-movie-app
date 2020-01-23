@@ -4,6 +4,8 @@ import RatingStars from './RatingStars.js';
 import './MovieRender.css';
 import Popup from "reactjs-popup";
 import { addMV } from '../reduxMngment/actions/actionCreators.js';
+import { Link } from 'react-router-dom';
+// import MyRoots from './MyRoot.js';
 
 class MovieRender extends Component {
     constructor(props){
@@ -40,15 +42,18 @@ class MovieRender extends Component {
     render() {
         return (
             <div className='movie-render'>
-                {this.props.list.map((el,i)=>{
+                {/* <MyRoots/> */}
+                {this.props.list.filter(e=>e.mvTitle.toLowerCase().includes(this.props.searchVal.toLowerCase()) && e.mvRating>=this.props.searchRate).map((el,i)=>{
                     return (
-                    <div className='movie-card' key={i}>
+                    <Link className='movie-card' key={i} to={"/".concat(el.mvTitle.replace(/[!@#$%^&*(),.?":{}|<>]/g,"_"))} style={{textDecoration:'none', cursor:'pointer'}}>
+                    {/* <div className='movie-card' key={i}> */}
                         <RatingStars pr={el.mvRating}/>
                         <img src={el.mvImgLink} style={{width:'150px'}} alt='imgimg'/>
                         <h3 style={{textAlign:'center'}}>{el.mvTitle}</h3>
-                    </div>)
+                    {/* </div> */}
+                    </Link>)
                 })}
-                <Popup trigger={<div className='movie-card add'></div>} position="center center" arrow='false' open={this.state.popupOpen} onClose={this.closeInit}>
+                <Popup trigger={<div className='movie-card add'></div>} position="center center" arrow={false} open={this.state.popupOpen} onClose={this.closeInit}>
                     <div>
                         <input name='mvTitle' onChange={this.handleChange} placeholder='movie title'/>
                         <input name='mvImgLink' onChange={this.handleChange} placeholder='movie image link'/>
@@ -62,7 +67,9 @@ class MovieRender extends Component {
 }
 const mapStateToProps = state =>{
     return {
-        list: state
+        list: state.movies,
+        searchVal:state.search,
+        searchRate:state.rate
     }
 }
 const mapDispachToProps = dispatch =>{

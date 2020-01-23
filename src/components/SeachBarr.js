@@ -1,22 +1,37 @@
 import React, { Component } from 'react';
 import RatingStars from './RatingStars.js';
 import './SeachBarr.css';
+import { connect } from 'react-redux'
+import { filterByRating, filterByVal } from '../reduxMngment/actions/actionCreators.js'
 
 class SeachBarr extends Component {
-    constructor(){
-        super()
+    constructor(props){
+        super(props)
         this.state = {
-            serchValu:"",
+            serchVal:"",
             searchRating:0
         }
+    }
+    getRating = (x)=>{
+        this.setState({searchRating: x},()=>this.props.searchByRating(this.state.searchRating))
+    }
+    handleSearchVal = (e)=>{
+        this.setState({serchVal: e.target.value},()=>this.props.serchByVal(this.state.serchVal))
     }
     render() {
         return (
             <div className='search-barr'>
-                <input type='search' placeholder='Search'/>
-                <RatingStars/>
+                <input type='search' placeholder='Search' onChange={this.handleSearchVal}/>
+                <RatingStars getRating={this.getRating}/>
             </div>
         )
     }
 }
-export default SeachBarr;
+const mapDispatchToPros = dispatch => {
+    return {
+        searchByRating: payload => dispatch(filterByRating(payload)),
+        serchByVal: payload => dispatch(filterByVal(payload))
+        // initShow: ()=> dispatch(initSHOW())
+    }
+}
+export default connect(null,mapDispatchToPros) (SeachBarr);
