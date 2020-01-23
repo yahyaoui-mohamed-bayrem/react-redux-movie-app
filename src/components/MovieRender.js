@@ -5,7 +5,7 @@ import './MovieRender.css';
 import Popup from "reactjs-popup";
 import { addMV } from '../reduxMngment/actions/actionCreators.js';
 import { Link } from 'react-router-dom';
-// import MyRoots from './MyRoot.js';
+import EditRemove from './EditRemove';
 
 class MovieRender extends Component {
     constructor(props){
@@ -42,16 +42,18 @@ class MovieRender extends Component {
     render() {
         return (
             <div className='movie-render'>
-                {/* <MyRoots/> */}
                 {this.props.list.filter(e=>e.mvTitle.toLowerCase().includes(this.props.searchVal.toLowerCase()) && e.mvRating>=this.props.searchRate).map((el,i)=>{
                     return (
-                    <Link className='movie-card' key={i} to={"/".concat(el.mvTitle.replace(/[!@#$%^&*(),.?":{}|<>]/g,"_"))} style={{textDecoration:'none', cursor:'pointer'}}>
-                    {/* <div className='movie-card' key={i}> */}
+                    <div className='movie-card' key={i}>
+                    <Link  to={"/".concat(el.mvTitle.replace(/[!@#$%^&*(),.?":{}|<>]/g,"_"))} style={{textDecoration:'none', cursor:'pointer'}}>
+                    
                         <RatingStars pr={el.mvRating}/>
                         <img src={el.mvImgLink} style={{width:'150px'}} alt='imgimg'/>
                         <h3 style={{textAlign:'center'}}>{el.mvTitle}</h3>
-                    {/* </div> */}
-                    </Link>)
+                    
+                    </Link>
+                    <EditRemove pr={i} style={{alignSelf: 'flex-end'}}/>
+                    </div>)
                 })}
                 <Popup trigger={<div className='movie-card add'></div>} position="center center" arrow={false} open={this.state.popupOpen} onClose={this.closeInit}>
                     <div>
